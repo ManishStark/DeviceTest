@@ -1,11 +1,13 @@
 package com.sibaken.devicetest;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -23,7 +25,7 @@ class TestItem{
     }
 }
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {        //タイトル表示の場合 → extends AppCompatActivity
     public static final String TAG = "DeviceTest";
 
     @Override
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "MainActivity");
 
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);    //タイトルバー非表示（setContentViewの前にコールする必要あり）
         setContentView(R.layout.activity_main);
 
         //ListViewに表示させる内容
