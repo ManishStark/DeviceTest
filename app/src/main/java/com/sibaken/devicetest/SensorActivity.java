@@ -28,7 +28,7 @@ public class SensorActivity extends Activity implements SensorEventListener {   
         setContentView(R.layout.activity_sensor);
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-        //照度センサ
+        //照度センサー
         List<Sensor> sensors = mSensorManager.getSensorList(Sensor.TYPE_LIGHT);
         if (sensors.size() > 0) {
             Sensor sensor = sensors.get(0);
@@ -38,9 +38,53 @@ public class SensorActivity extends Activity implements SensorEventListener {   
         } else {
             TextView LIGHT = (TextView) findViewById(R.id.LIGHT);
             LIGHT.setText("照度センサーがありません");
+        } //加速度センサー
+        sensors = mSensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+        if (sensors.size() > 0) {
+            Sensor sensor = sensors.get(0);
+            mIsSensor = mSensorManager.registerListener(this, sensor, Sensor.TYPE_ACCELEROMETER);
+
+        } else {
+            TextView ACCELEROMETER = (TextView) findViewById(R.id.ACCELEROMETER);
+            ACCELEROMETER.setText("加速度センサーがありません");
         }
 
-        // シークバーオブジェクトを取得
+        //地磁気センサー
+        sensors = mSensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+        if (sensors.size() > 0) {
+            Sensor sensor = sensors.get(0);
+            mIsSensor = mSensorManager.registerListener(this, sensor, Sensor.TYPE_MAGNETIC_FIELD);
+
+        } else {
+            TextView MAGNETIC_FIELD = (TextView) findViewById(R.id.MAGNETIC_FIELD);
+            MAGNETIC_FIELD.setText("地磁気センサーがありません");
+        }
+
+        //ジャイロセンサー
+        sensors = mSensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
+        if (sensors.size() > 0) {
+            Sensor sensor = sensors.get(0);
+            mIsSensor = mSensorManager.registerListener(this, sensor, Sensor.TYPE_GYROSCOPE);
+
+        } else {
+            TextView MAGNETIC_FIELD = (TextView) findViewById(R.id.GYROSCOPE);
+            MAGNETIC_FIELD.setText("ジャイロセンサーがありません");
+        }
+
+        //傾きセンサー
+        sensors = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
+        if (sensors.size() > 0) {
+            Sensor sensor = sensors.get(0);
+            mIsSensor = mSensorManager.registerListener(this, sensor, Sensor.TYPE_ORIENTATION);
+
+        } else {
+            TextView ORIENTATION = (TextView) findViewById(R.id.ORIENTATION);
+            ORIENTATION.setText("傾きセンサーがありません");
+        }
+
+
+
+                // シークバーオブジェクトを取得
         SeekBar SeekBar = (SeekBar) findViewById(R.id.seekBar);
 
         SeekBar.setOnSeekBarChangeListener(new android.widget.SeekBar.OnSeekBarChangeListener() {
@@ -79,6 +123,39 @@ public class SensorActivity extends Activity implements SensorEventListener {   
             Log.v("Activity", "Sensor.TYPE_LIGHT :" + event.values[0]);
             TextView LIGHT = (TextView) findViewById(R.id.LIGHT);
             LIGHT.setText("照度\n" + event.values[0] + " lux");
+        }
+        else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)//加速度センサー
+        {
+            Log.v("Activity", "Sensor.TYPE_ACCELEROMETER : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
+            TextView ACCELEROMETER = (TextView) findViewById(R.id.ACCELEROMETER);
+            ACCELEROMETER.setText("重力加速度 \nX = " + event.values[0] + "m/s^2\n" +
+                    "Y = " + event.values[1] + "m/s^2\n" +
+                    "Z = " + event.values[2] + "m/s^2\n");
+        }
+        else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)//地磁気センサー
+        {
+            Log.v("Activity", "Sensor.TYPE_MAGNETIC_FIELD : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
+            TextView MAGNETIC_FIELD = (TextView) findViewById(R.id.MAGNETIC_FIELD);
+            MAGNETIC_FIELD.setText("地磁気センサー \nX = " + event.values[0] + "μT\n" +
+                    "Y = " + event.values[1] + "μT\n" +
+                    "Z = " + event.values[2] + "μT\n");
+        }
+        else if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE)//ジャイロセンサー
+        {
+            Log.v("Activity", "Sensor.TYPE_GYROSCOPE : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
+            TextView GYROSCOPE = (TextView) findViewById(R.id.GYROSCOPE);
+            GYROSCOPE.setText("ジャイロセンサー \nX = " + event.values[0] + "rad/s\n" +
+                    "Y = " + event.values[1] + "rad/s\n" +
+                    "Z = " + event.values[2] + "rad/s\n");
+        }
+
+        else if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)//傾きセンサー
+        {
+            Log.v("Activity", "Sensor.TYPE_ORIENTATION : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
+            TextView GYROSCOPE = (TextView) findViewById(R.id.ORIENTATION);
+            GYROSCOPE.setText("傾きセンサー \nX = " + event.values[0] + "deg\n" +
+                    "Y = " + event.values[1] + "deg\n" +
+                    "Z = " + event.values[2] + "deg\n");
         }
 
     }
