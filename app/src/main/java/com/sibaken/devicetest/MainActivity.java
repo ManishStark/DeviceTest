@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         List<String> MainList = new ArrayList<String>();
 
         TestItem TestItem[] ={
-                new TestItem("test", 10)
+                new TestItem("test", 10),
+                new TestItem("test2", 10)
         };
 
             MainList.add("加速度センサー");
