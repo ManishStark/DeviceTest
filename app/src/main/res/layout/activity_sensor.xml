@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <ScrollView android:id="@+id/scrollView1" android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textView">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" ><![CDATA[
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,28 +15,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.sibaken.devicetest.SensorActivity">
+    tools:context="com.sibaken.devicetest.SensorActivity"> ]]>
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:max="20"
-        android:progress="10" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView"
-        android:layout_above="@+id/seekBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="77dp"
-        android:textSize="20dp" />
-
-    <TextView
+            <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -37,5 +26,69 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="加速度センサー"
+        android:id="@+id/ACCELEROMETER"
+        android:layout_below="@+id/LIGHT"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="地磁気センサー"
+        android:id="@+id/MAGNETIC_FIELD"
+        android:layout_below="@+id/ACCELEROMETER"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="ジャイロセンサー"
+        android:id="@+id/GYROSCOPE"
+        android:layout_below="@+id/MAGNETIC_FIELD"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="傾きセンサー"
+        android:id="@+id/ORIENTATION"
+        android:layout_below="@+id/GYROSCOPE"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</LinearLayout>
+
+    </ScrollView>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:max="20"
+        android:progress="10"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="46dp" />
+
+    <TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="更新速度"
+android:id="@+id/textView"
+android:textSize="20dp"
+        android:layout_above="@+id/seekBar"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
