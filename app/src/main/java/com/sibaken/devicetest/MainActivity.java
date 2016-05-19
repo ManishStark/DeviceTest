@@ -15,72 +15,68 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-class TestItem{
-    private String Name;
-    private int No;
-
-    public TestItem(String Name, int No){
-        this.Name = Name;
-        this.No = No;
-    }
-}
 
 public class MainActivity extends Activity {        //タイトル表示の場合 → extends AppCompatActivity
-    public static final String TAG = "DeviceTest";
+
+    //テストアイテムの項目を設定
+    final String TestItemList[] ={
+            Common.NAME_ACCELEROMETOR,
+            Common.NAME_GYROSCOPE,
+            Common.NAME_LIGHT,
+            Common.NAME_MAGNETIC_FIELD,
+            Common.NAME_ORIENTATION,
+            Common.NAME_PRESSURE,
+            Common.NAME_PROXIMITY,
+            Common.NAME_TEMPERATURE,
+            Common.NAME_GRAVITY,
+            Common.NAME_LINEAR_ACCELERATION,
+            Common.NAME_ROTATION_VECTOR,
+            Common.NAME_AMBIENT_TEMPERATURE,
+            Common.NAME_RELATIVE_HUMIDITY,
+            "End"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "MainActivity");
+        Log.i(Common.TAG, "MainActivity");
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);    //タイトルバー非表示（setContentViewの前にコールする必要あり）
         setContentView(R.layout.activity_main);
 
-        //ListViewに表示させる内容
+        //テストアイテムの項目をリストビューに設定
         List<String> MainList = new ArrayList<String>();
+        for(int index = 0; "End" != TestItemList[index]; index++) {
+            MainList.add(TestItemList[index]);
+        }
 
-        TestItem TestItem[] ={
-                new TestItem("test", 10),
-                new TestItem("test2", 10)
-        };
-
-            MainList.add("加速度センサー");
-            MainList.add("ジャイロセンサー");
-            MainList.add("照度センサー");
-            MainList.add("磁界センサー");
-            MainList.add("傾きセンサー");
-            MainList.add("圧力センサー");
-            MainList.add("近接センサー");
-            MainList.add("温度センサー");
-            MainList.add("GPS");
-            MainList.add("スピーカー");
-            MainList.add("マイク");
-            MainList.add("電池残量");
-            MainList.add("タッチスクリーン");
-            MainList.add("デバイス情報");
-
+        //リストビューのレイアウトを設定
         ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, MainList);
 
+        //リストビューの設定
         ListView MainListView = (ListView) findViewById(R.id.MainListView);
-
         MainListView.setAdapter(Adapter);
 
+        /*
+         *　リストビューのアイテムが押された時の処理
+         */
         MainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(TAG, "onItemClick");
+                Log.i(Common.TAG, "onItemClick");
 
+                //リストに表示していたアイテム名をトーストで表示
                 String text = (String) parent.getItemAtPosition(position);
                 Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
 
-                if (2 == position) {
-                    // インテントの生成
-                    Intent intent = new Intent(MainActivity.this, SensorActivity.class);
-
-                    // SubActivity の起動
-                    startActivity(intent);
-                }
+                // 次画面へのインテントの生成
+                Intent intent = new Intent(MainActivity.this, SensorActivity.class);
+                //押されたリスト番号と、
+                // リスト設定（表示）したアイテムを次画面に渡す（次画面でどのアイテムがタッチされたか判断するため）
+                intent.putExtra("TestItemList", TestItemList);
+                intent.putExtra("TestItemNo", position);
+                // 次画面へ移動
+                startActivity(intent);
             }
         });
     }

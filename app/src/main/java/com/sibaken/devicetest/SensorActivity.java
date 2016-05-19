@@ -2,6 +2,7 @@ package com.sibaken.devicetest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -11,13 +12,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import java.util.List;
 
 
 public class SensorActivity extends Activity implements SensorEventListener {        //タイトル表示の場合 → extends AppCompatActivity
 
-    public static final String TAG = "DeviceTest";
     private SensorManager mSensorManager;
     private boolean mIsSensor;
 
@@ -26,6 +27,55 @@ public class SensorActivity extends Activity implements SensorEventListener {   
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);          //タイトルバー非表示（setContentViewの前にコールする必要あり）
         setContentView(R.layout.activity_sensor);
+
+        // 現在のintentを取得する
+        Intent intent = getIntent();
+
+        String TestItem[] = intent.getStringArrayExtra("TestItemList");
+        int TestItemNo = intent.getIntExtra("TestItemNo", 0);
+
+        switch(TestItem[TestItemNo])
+        {
+            case Common.NAME_ACCELEROMETOR :
+                break;
+            
+            case Common.NAME_GYROSCOPE :
+                break;
+
+            case Common.NAME_LIGHT :
+                break;
+
+            case Common.NAME_MAGNETIC_FIELD :
+                break;
+
+            case Common.NAME_ORIENTATION :
+                break;
+
+            case Common.NAME_PRESSURE :
+                break;
+
+            case Common.NAME_PROXIMITY :
+                break;
+
+            case Common.NAME_TEMPERATURE :
+                break;
+
+            case Common.NAME_GRAVITY :
+                break;
+
+            case Common.NAME_LINEAR_ACCELERATION :
+                break;
+
+            case Common.NAME_ROTATION_VECTOR :
+                break;
+
+            case Common.NAME_AMBIENT_TEMPERATURE :
+                break;
+
+            case Common.NAME_RELATIVE_HUMIDITY :
+                break;
+
+        }
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         //照度センサー
@@ -112,7 +162,7 @@ public class SensorActivity extends Activity implements SensorEventListener {   
     public void onAccuracyChanged(Sensor sensor, int accuracy)
     {
         // センサーの精度が変更されると呼ばれる
-        Log.d(TAG, "onAccuracyChanged");
+        Log.d(Common.TAG, "onAccuracyChanged");
     }
 
     @Override
@@ -120,13 +170,13 @@ public class SensorActivity extends Activity implements SensorEventListener {   
 
         if (event.sensor.getType() == Sensor.TYPE_LIGHT)//照度センサー
         {
-            Log.v("Activity", "Sensor.TYPE_LIGHT :" + event.values[0]);
+//            Log.v("Activity", "Sensor.TYPE_LIGHT :" + event.values[0]);
             TextView LIGHT = (TextView) findViewById(R.id.LIGHT);
             LIGHT.setText("照度\n" + event.values[0] + " lux");
         }
         else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)//加速度センサー
         {
-            Log.v("Activity", "Sensor.TYPE_ACCELEROMETER : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
+//            Log.v("Activity", "Sensor.TYPE_ACCELEROMETER : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
             TextView ACCELEROMETER = (TextView) findViewById(R.id.ACCELEROMETER);
             ACCELEROMETER.setText("重力加速度 \nX = " + event.values[0] + "m/s^2\n" +
                     "Y = " + event.values[1] + "m/s^2\n" +
@@ -134,7 +184,7 @@ public class SensorActivity extends Activity implements SensorEventListener {   
         }
         else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)//地磁気センサー
         {
-            Log.v("Activity", "Sensor.TYPE_MAGNETIC_FIELD : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
+//            Log.v("Activity", "Sensor.TYPE_MAGNETIC_FIELD : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
             TextView MAGNETIC_FIELD = (TextView) findViewById(R.id.MAGNETIC_FIELD);
             MAGNETIC_FIELD.setText("地磁気センサー \nX = " + event.values[0] + "μT\n" +
                     "Y = " + event.values[1] + "μT\n" +
@@ -142,7 +192,7 @@ public class SensorActivity extends Activity implements SensorEventListener {   
         }
         else if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE)//ジャイロセンサー
         {
-            Log.v("Activity", "Sensor.TYPE_GYROSCOPE : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
+//            Log.v("Activity", "Sensor.TYPE_GYROSCOPE : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
             TextView GYROSCOPE = (TextView) findViewById(R.id.GYROSCOPE);
             GYROSCOPE.setText("ジャイロセンサー \nX = " + event.values[0] + "rad/s\n" +
                     "Y = " + event.values[1] + "rad/s\n" +
@@ -151,7 +201,7 @@ public class SensorActivity extends Activity implements SensorEventListener {   
 
         else if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)//傾きセンサー
         {
-            Log.v("Activity", "Sensor.TYPE_ORIENTATION : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
+//            Log.v("Activity", "Sensor.TYPE_ORIENTATION : X = " + event.values[0] + "Y = " + event.values[1] + "Z  = " + event.values[2]);
             TextView GYROSCOPE = (TextView) findViewById(R.id.ORIENTATION);
             GYROSCOPE.setText("傾きセンサー \nX = " + event.values[0] + "deg\n" +
                     "Y = " + event.values[1] + "deg\n" +
