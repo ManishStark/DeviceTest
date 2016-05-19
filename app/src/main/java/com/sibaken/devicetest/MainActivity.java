@@ -58,7 +58,7 @@ public class MainActivity extends Activity {        //タイトル表示の場�
         MainListView.setAdapter(Adapter);
 
         /*
-         *　リストビューのアイテムが押された時の処理
+         * リストビューのアイテムが押された時の処理
          */
         MainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {        //タイトル表示の場�
 
                 //リストに表示していたアイテム名をトーストで表示
                 String text = (String) parent.getItemAtPosition(position);
-                Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
 
                 // 次画面へのインテントの生成
                 Intent intent = new Intent(MainActivity.this, SensorActivity.class);
