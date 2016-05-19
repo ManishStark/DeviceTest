@@ -21,53 +21,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="照度センサー"
-        android:id="@+id/LIGHT"
+        android:text="センサー"
+        android:id="@+id/senser1"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="加速度センサー"
-        android:id="@+id/ACCELEROMETER"
-        android:layout_below="@+id/LIGHT"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="センサー情報"
+                android:id="@+id/senser" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="地磁気センサー"
-        android:id="@+id/MAGNETIC_FIELD"
-        android:layout_below="@+id/ACCELEROMETER"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="ジャイロセンサー"
-        android:id="@+id/GYROSCOPE"
-        android:layout_below="@+id/MAGNETIC_FIELD"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="傾きセンサー"
-        android:id="@+id/ORIENTATION"
-        android:layout_below="@+id/GYROSCOPE"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-</LinearLayout>
+        </LinearLayout>
 
     </ScrollView>
 
