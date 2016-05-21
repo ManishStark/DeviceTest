@@ -1,6 +1,8 @@
 package com.sibaken.devicetest;
 
-public class Common {
+import android.hardware.Sensor;
+
+class Common {
 
     //ログタグ名
     public static final String TAG = "DeviceTest";
@@ -33,4 +35,41 @@ public class Common {
     "電池残量",
     "タッチスクリーン",
     "デバイス情報",*/
+}
+
+/*
+ *　テストアイテム構造体
+ */
+class TestItem {
+    public String Name;     //センサーの名前
+    public int Type;       //センサーのタイプ
+
+    //コンストラクタ
+    TestItem(String Name, int Type){
+        this.Name = Name;
+        this.Type = Type;
+    }
+}
+
+/*
+ *　テストアイテムリスト構造体
+ */
+class TestItemList {
+    public TestItem TestItem[] = {
+            //           センサーの名前（リストに表示される） //センサーのタイプ（センサー取得時の定義）
+            new TestItem(Common.NAME_ACCELEROMETOR,         Sensor.TYPE_ACCELEROMETER),
+            new TestItem(Common.NAME_GYROSCOPE,             Sensor.TYPE_GYROSCOPE),
+            new TestItem(Common.NAME_LIGHT,                  Sensor.TYPE_LIGHT),
+            new TestItem(Common.NAME_MAGNETIC_FIELD,        Sensor.TYPE_MAGNETIC_FIELD),
+            new TestItem(Common.NAME_ORIENTATION,           Sensor.TYPE_ORIENTATION),
+            new TestItem(Common.NAME_PRESSURE,               Sensor.TYPE_PRESSURE),
+            new TestItem(Common.NAME_PROXIMITY,              Sensor.TYPE_PROXIMITY),
+            new TestItem(Common.NAME_TEMPERATURE,            Sensor.TYPE_TEMPERATURE),
+            new TestItem(Common.NAME_GRAVITY,                Sensor.TYPE_GRAVITY),
+            new TestItem(Common.NAME_LINEAR_ACCELERATION,  Sensor.TYPE_LINEAR_ACCELERATION),
+            new TestItem(Common.NAME_ROTATION_VECTOR,       Sensor.TYPE_ROTATION_VECTOR),
+            new TestItem(Common.NAME_AMBIENT_TEMPERATURE,  Sensor.TYPE_AMBIENT_TEMPERATURE),
+            new TestItem(Common.NAME_RELATIVE_HUMIDITY,     Sensor.TYPE_RELATIVE_HUMIDITY),
+            new TestItem("End", 10),
+    };
 }

@@ -44,11 +44,16 @@ public class MainActivity extends Activity {        //タイトル表示の場�
         requestWindowFeature(Window.FEATURE_NO_TITLE);    //タイトルバー非表示（setContentViewの前にコールする必要あり）
         setContentView(R.layout.activity_main);
 
+        //テストアイテムリスト生成
+        TestItemList TestItemList = new TestItemList();
+
+
         //テストアイテムの項目をリストビューに設定
         List<String> MainList = new ArrayList<String>();
-        for(int index = 0; "End" != TestItemList[index]; index++) {
-            MainList.add(TestItemList[index]);
+        for(int index = 0; "End" != TestItemList.TestItem[index].Name; index++) {
+            MainList.add(TestItemList.TestItem[index].Name);
         }
+
 
         //リストビューのレイアウトを設定
         ArrayAdapter<String> Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, MainList);
@@ -63,6 +68,7 @@ public class MainActivity extends Activity {        //タイトル表示の場�
         MainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Log.i(Common.TAG, "onItemClick");
 
                 //リストに表示していたアイテム名をトーストで表示
@@ -71,9 +77,7 @@ public class MainActivity extends Activity {        //タイトル表示の場�
 
                 // 次画面へのインテントの生成
                 Intent intent = new Intent(MainActivity.this, SensorActivity.class);
-                //押されたリスト番号と、
-                // リスト設定（表示）したアイテムを次画面に渡す（次画面でどのアイテムがタッチされたか判断するため）
-                intent.putExtra("TestItemList", TestItemList);
+                //押されたリスト番号を次画面に渡す（次画面でどのアイテムがタッチされたか判断するため）
                 intent.putExtra("TestItemNo", position);
                 // 次画面へ移動
                 startActivity(intent);

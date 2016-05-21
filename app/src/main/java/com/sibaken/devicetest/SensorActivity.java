@@ -28,256 +28,39 @@ public class SensorActivity extends Activity implements SensorEventListener {   
 
         // 現在のintentを取得する
         Intent intent = getIntent();
-
-        String TestItem[] = intent.getStringArrayExtra("TestItemList");
+        //前画面でどのリスト番号が押されたかを取得する
         int TestItemNo = intent.getIntExtra("TestItemNo", 0);
+
+        //テストアイテムリスト生成
+        TestItemList TestItemList = new TestItemList();
 
         //ここで不要なテキストを消す
         TextView SenserText = (TextView) findViewById(R.id.senser);
         SenserText.setText("");
 
+        //センサー取得値を表示するテキストビュー取得
+        TextView TextView = (TextView) findViewById(R.id.senser1);
+        TextView.setText(TestItemList.TestItem[TestItemNo].Name);
+
+        //センサーマネージャー取得
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         List<Sensor> sensors = null;
-        TextView TextView = (TextView) findViewById(R.id.senser1);
 
-        switch(TestItem[TestItemNo])
-        {
-            case Common.NAME_ACCELEROMETOR :
-                TextView.setText(Common.NAME_ACCELEROMETOR);
-                //加速度センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-                } else {
-                    TextView ACCELEROMETER = (TextView) findViewById(R.id.senser);
-                    ACCELEROMETER.setText(Common.NAME_ACCELEROMETOR + "がありません");
-                }
-
-                break;
-            
-            case Common.NAME_GYROSCOPE :
-                TextView.setText(Common.NAME_GYROSCOPE);
-                //ジャイロセンサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-                } else {
-                    TextView ACCELEROMETER = (TextView) findViewById(R.id.senser);
-                    ACCELEROMETER.setText(Common.NAME_GYROSCOPE + "がありません");
-                }
-
-                break;
-
-            case Common.NAME_LIGHT :
-                TextView.setText(Common.NAME_LIGHT);
-                //照度センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_LIGHT);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_LIGHT + "がありません");
-                }
-
-                break;
-
-            case Common.NAME_MAGNETIC_FIELD :
-                TextView.setText(Common.NAME_MAGNETIC_FIELD);
-                //地磁気センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_MAGNETIC_FIELD + "地磁気センサーがありません");
-                }
-                break;
-
-            case Common.NAME_ORIENTATION :
-                TextView.setText(Common.NAME_ORIENTATION);
-                //傾きセンサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_ORIENTATION + "がありません");
-                }
-                break;
-
-            case Common.NAME_PRESSURE :
-                TextView.setText(Common.NAME_PRESSURE);
-                //圧力センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_PRESSURE);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_PRESSURE + "がありません");
-                }
-                break;
-
-            case Common.NAME_PROXIMITY :
-                TextView.setText(Common.NAME_PROXIMITY);
-                //近接センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_PROXIMITY);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_PROXIMITY + "がありません");
-                }
-                break;
-
-            case Common.NAME_TEMPERATURE :
-                TextView.setText(Common.NAME_TEMPERATURE);
-                //温度センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_TEMPERATURE);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText( Common.NAME_TEMPERATURE + "がありません");
-                }
-                break;
-
-            case Common.NAME_GRAVITY :
-                TextView.setText(Common.NAME_GRAVITY);
-                //重力センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_GRAVITY);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_GRAVITY + "がありません");
-                }
-                break;
-
-            case Common.NAME_LINEAR_ACCELERATION :
-                TextView.setText(Common.NAME_LINEAR_ACCELERATION);
-                //直線化速度センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_LINEAR_ACCELERATION);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_LINEAR_ACCELERATION + "がありません");
-                }
-                break;
-
-            case Common.NAME_ROTATION_VECTOR :
-                TextView.setText(Common.NAME_ROTATION_VECTOR);
-                //回転ベクトルセンサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_ROTATION_VECTOR);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_ROTATION_VECTOR + "がありません");
-                }
-                break;
-
-            case Common.NAME_AMBIENT_TEMPERATURE :
-                TextView.setText(Common.NAME_AMBIENT_TEMPERATURE);
-                //温度センサー(最新)
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_AMBIENT_TEMPERATURE);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_AMBIENT_TEMPERATURE + "がありません");
-                }
-                break;
-
-            case Common.NAME_RELATIVE_HUMIDITY :
-                TextView.setText(Common.NAME_RELATIVE_HUMIDITY);
-                //湿度センサー
-                sensors = mSensorManager.getSensorList(Sensor.TYPE_RELATIVE_HUMIDITY);
-                if (sensors.size() > 0) {
-                    Sensor sensor = sensors.get(0);
-                    mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
-
-
-                } else {
-                    TextView LIGHT = (TextView) findViewById(R.id.senser);
-                    LIGHT.setText(Common.NAME_RELATIVE_HUMIDITY + "がありません");
-                }
-                break;
-
-        }
-        /*
-
-        //地磁気センサー
-        sensors = mSensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+        //センサーリスト取得
+        sensors = mSensorManager.getSensorList(TestItemList.TestItem[TestItemNo].Type);
+        //該当のセンサーが1つ以上搭載されているかを判断
         if (sensors.size() > 0) {
             Sensor sensor = sensors.get(0);
-            mIsSensor = mSensorManager.registerListener(this, sensor, Sensor.TYPE_MAGNETIC_FIELD);
+            //該当のセンサーが搭載されていた場合はセンサーを取得
+            mIsSensor = mSensorManager.registerListener(this, sensor, TestItemList.TestItem[TestItemNo].Type);
 
         } else {
-            TextView MAGNETIC_FIELD = (TextView) findViewById(R.id.MAGNETIC_FIELD);
-            MAGNETIC_FIELD.setText("地磁気センサーがありません");
+            //該当のセンサーが搭載されていなければその旨を表示
+            TextView ACCELEROMETER = (TextView) findViewById(R.id.senser);
+            ACCELEROMETER.setText(TestItemList.TestItem[TestItemNo].Name + "がありません");
         }
 
-        //ジャイロセンサー
-        sensors = mSensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
-        if (sensors.size() > 0) {
-            Sensor sensor = sensors.get(0);
-            mIsSensor = mSensorManager.registerListener(this, sensor, Sensor.TYPE_GYROSCOPE);
-
-        } else {
-            TextView MAGNETIC_FIELD = (TextView) findViewById(R.id.GYROSCOPE);
-            MAGNETIC_FIELD.setText("ジャイロセンサーがありません");
-        }
-
-        //傾きセンサー
-        sensors = mSensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
-        if (sensors.size() > 0) {
-            Sensor sensor = sensors.get(0);
-            mIsSensor = mSensorManager.registerListener(this, sensor, Sensor.TYPE_ORIENTATION);
-
-        } else {
-            TextView ORIENTATION = (TextView) findViewById(R.id.ORIENTATION);
-            ORIENTATION.setText("傾きセンサーがありません");
-        }
-
-
-*/
-
-                // シークバーオブジェクトを取得
+        // シークバーオブジェクトを取得
         SeekBar SeekBar = (SeekBar) findViewById(R.id.seekBar);
 
         SeekBar.setOnSeekBarChangeListener(new android.widget.SeekBar.OnSeekBarChangeListener() {
