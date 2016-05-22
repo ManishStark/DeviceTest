@@ -43,11 +43,13 @@ class Common {
 class TestItem {
     public String Name;     //センサーの名前
     public int Type;       //センサーのタイプ
+    public String Help;
 
-    //コンストラクタ
-    TestItem(String Name, int Type){
+        //コンストラクタ
+    TestItem(String Name, int Type, String Help){
         this.Name = Name;
         this.Type = Type;
+        this.Help = Help;
     }
 }
 
@@ -56,20 +58,20 @@ class TestItem {
  */
 class TestItemList {
     public TestItem TestItem[] = {
-            //           センサーの名前（リストに表示される） //センサーのタイプ（センサー取得時の定義）
-            new TestItem(Common.NAME_ACCELEROMETOR,         Sensor.TYPE_ACCELEROMETER),
-            new TestItem(Common.NAME_GYROSCOPE,             Sensor.TYPE_GYROSCOPE),
-            new TestItem(Common.NAME_LIGHT,                  Sensor.TYPE_LIGHT),
-            new TestItem(Common.NAME_MAGNETIC_FIELD,        Sensor.TYPE_MAGNETIC_FIELD),
-            new TestItem(Common.NAME_ORIENTATION,           Sensor.TYPE_ORIENTATION),
-            new TestItem(Common.NAME_PRESSURE,               Sensor.TYPE_PRESSURE),
-            new TestItem(Common.NAME_PROXIMITY,              Sensor.TYPE_PROXIMITY),
-            new TestItem(Common.NAME_TEMPERATURE,            Sensor.TYPE_TEMPERATURE),
-            new TestItem(Common.NAME_GRAVITY,                Sensor.TYPE_GRAVITY),
-            new TestItem(Common.NAME_LINEAR_ACCELERATION,  Sensor.TYPE_LINEAR_ACCELERATION),
-            new TestItem(Common.NAME_ROTATION_VECTOR,       Sensor.TYPE_ROTATION_VECTOR),
-            new TestItem(Common.NAME_AMBIENT_TEMPERATURE,  Sensor.TYPE_AMBIENT_TEMPERATURE),
-            new TestItem(Common.NAME_RELATIVE_HUMIDITY,     Sensor.TYPE_RELATIVE_HUMIDITY),
-            new TestItem("End", 10),
+            //       センサーの名前（リストに表示される） //センサーのタイプ（センサー取得時の定義）  //センサーの説明
+            new TestItem(Common.NAME_ACCELEROMETOR,         Sensor.TYPE_ACCELEROMETER,           "説明文1"),
+            new TestItem(Common.NAME_GYROSCOPE,             Sensor.TYPE_GYROSCOPE,                 "説明文2"),
+            new TestItem(Common.NAME_LIGHT,                  Sensor.TYPE_LIGHT,                     "説明文3"),
+            new TestItem(Common.NAME_MAGNETIC_FIELD,        Sensor.TYPE_MAGNETIC_FIELD,          "説明文4"),
+            new TestItem(Common.NAME_ORIENTATION,           Sensor.TYPE_ORIENTATION,              "説明文5"),
+            new TestItem(Common.NAME_PRESSURE,               Sensor.TYPE_PRESSURE,                 "説明文6"),
+            new TestItem(Common.NAME_PROXIMITY,              Sensor.TYPE_PROXIMITY,                "説明文7"),
+            new TestItem(Common.NAME_TEMPERATURE,            Sensor.TYPE_TEMPERATURE,             "説明文8"),
+            new TestItem(Common.NAME_GRAVITY,                Sensor.TYPE_GRAVITY,                  "説明文9"),
+            new TestItem(Common.NAME_LINEAR_ACCELERATION,  Sensor.TYPE_LINEAR_ACCELERATION,    "説明文10"),
+            new TestItem(Common.NAME_ROTATION_VECTOR,       Sensor.TYPE_ROTATION_VECTOR,         "説明文11"),
+            new TestItem(Common.NAME_AMBIENT_TEMPERATURE,  Sensor.TYPE_AMBIENT_TEMPERATURE,    "説明文12"),
+            new TestItem(Common.NAME_RELATIVE_HUMIDITY,     Sensor.TYPE_RELATIVE_HUMIDITY,      "説明文13"),
+            new TestItem("End", -1, ""),
     };
 }
