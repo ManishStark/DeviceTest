@@ -55,7 +55,7 @@ public class SensorActivity extends Activity implements SensorEventListener {   
         if (sensors.size() > 0) {
             Sensor sensor = sensors.get(0);
             //該当のセンサーが搭載されていた場合はセンサーを取得
-            mIsSensor = mSensorManager.registerListener(this, sensor, TestItemList.TestItem[TestItemNo].Type);
+            mIsSensor = mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
 
         } else {
             //該当のセンサーが搭載されていなければその旨を表示
